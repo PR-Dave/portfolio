@@ -4,34 +4,55 @@ document.addEventListener("DOMContentLoaded", function () {
     const images = document.querySelectorAll(".carousel-container img");
     const prev = document.querySelector(".prev");
     const next = document.querySelector(".next");
-    
-    let index = 0;
-    const total = images.length;
-    
-    function moveSlide(step) {
-        index = (index + step + total) % total;
-        container.style.transform = `translateX(-${index * 100}%)`;
+
+    if (container && images.length > 0 && prev && next) {
+        let index = 0;
+        const total = images.length;
+
+        function moveSlide(step) {
+            index = (index + step + total) % total;
+            container.style.transform = `translateX(-${index * 100}%)`;
+            console.log(`Carousel moved to slide ${index + 1}`); // Debugging
+        }
+
+        // Auto-slide every 60 seconds (1 minute)
+        setInterval(() => moveSlide(1), 60000);
+
+        // Manual navigation
+        prev.addEventListener("click", () => moveSlide(-1));
+        prev.addEventListener("touchstart", () => moveSlide(-1)); // For mobile
+        next.addEventListener("click", () => moveSlide(1));
+        next.addEventListener("touchstart", () => moveSlide(1)); // For mobile
+    } else {
+        console.error("Carousel elements not found!"); // Debugging
     }
-
-    // Auto-slide every 60 seconds (1 minute)
-    setInterval(() => moveSlide(1), 60000);
-
-    // Manual navigation
-    prev.addEventListener("click", () => moveSlide(-1));
-    next.addEventListener("click", () => moveSlide(1));
 
     // ===== Navigation Menu Functionality =====
     const navMenu = document.querySelector('.nav__menu');
     const navToggle = document.querySelector('.nav__toggle');
     const navClose = document.querySelector('.nav__close');
 
-    // Toggle menu when toggle button is clicked
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('show-menu');
-    });
+    if (navMenu && navToggle && navClose) {
+        // Toggle menu when toggle button is clicked or touched
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show-menu');
+            console.log('Toggle button clicked'); // Debugging
+        });
+        navToggle.addEventListener('touchstart', () => {
+            navMenu.classList.toggle('show-menu');
+            console.log('Toggle button touched'); // Debugging
+        });
 
-    // Close menu when close button is clicked
-    navClose.addEventListener('click', () => {
-        navMenu.classList.remove('show-menu');
-    });
+        // Close menu when close button is clicked or touched
+        navClose.addEventListener('click', () => {
+            navMenu.classList.remove('show-menu');
+            console.log('Close button clicked'); // Debugging
+        });
+        navClose.addEventListener('touchstart', () => {
+            navMenu.classList.remove('show-menu');
+            console.log('Close button touched'); // Debugging
+        });
+    } else {
+        console.error("Navigation elements not found!"); // Debugging
+    }
 });
