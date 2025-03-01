@@ -125,32 +125,32 @@ img {
 }
 
 /*===== NAV =====*/
+/* ===== NAVIGATION ===== */
 .nav {
   height: var(--header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 @media screen and (max-width: 768px) {
   .nav__menu {
     position: fixed;
     top: var(--header-height);
-    right: -100%; /* Hide the menu off-screen by default */
+    right: -100%;
     width: 80%;
     height: 100%;
     padding: 2rem;
     background-color: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
-    transition: 0.5s;
+    transition: right 0.5s ease;
     z-index: var(--z-fixed);
   }
 
-  /* Show the menu when the "show-menu" class is added */
   .nav__menu.show-menu {
     right: 0;
   }
 
-  /* Close button styling */
   .nav__close {
     position: absolute;
     top: 1rem;
@@ -160,38 +160,59 @@ img {
     cursor: pointer;
   }
 
-  /* Toggle button styling */
   .nav__toggle {
     color: var(--white-color);
     font-size: 1.5rem;
     cursor: pointer;
   }
 }
+
+@media screen and (min-width: 769px) {
+  .nav__menu {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    background-color: transparent;
+    backdrop-filter: none;
+    transition: none;
+  }
+
+  .nav__list {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav__toggle,
+  .nav__close {
+    display: none;
+  }
+}
+
 .nav__item {
   margin-bottom: var(--mb-4);
 }
+
 .nav__link {
   position: relative;
   color: var(--dark-color);
 }
+
 .nav__link:hover {
   color: var(--first-color);
 }
+
 .nav__logo {
   color: var(--white-color);
 }
+
 .nav__toggle {
   color: var(--white-color);
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-/*=== Show menu ===*/
-.show {
-  right: 0;
-}
-
-/*Active menu*/
+/* Active menu */
 .active::after {
   position: absolute;
   content: "";
@@ -202,47 +223,55 @@ img {
   background-color: var(--first-color);
 }
 
-/*===== HOME =====*/
+/* ===== HOME ===== */
 .home {
   position: relative;
   background-color: var(--first-color);
   overflow: hidden;
 }
+
 .home__container {
   height: calc(100vh - var(--header-height));
   row-gap: 5rem;
 }
+
 .home__title {
   align-self: flex-end;
   font-size: var(--big-font-size);
   color: var(--white-color);
   line-height: 0.8;
 }
+
 .home__title span {
   text-shadow: 0 20px 25px rgba(0, 0, 0, 0.5);
 }
+
 .home__scroll {
   align-self: flex-end;
   padding-bottom: var(--mb-4);
 }
+
 .home__scroll-link {
   writing-mode: vertical-lr;
   transform: rotate(-180deg);
   color: var(--white-color);
 }
+
 .home__img {
   position: absolute;
   right: 0;
   bottom: 0;
   width: 200px;
+  max-width: 100%;
 }
 
-/* ===== ABOUT =====*/
+/* ===== ABOUT ===== */
 .about__container {
   justify-items: center;
   row-gap: 2rem;
   text-align: center;
 }
+
 .about__img {
   display: flex;
   justify-content: center;
@@ -253,37 +282,45 @@ img {
   border-radius: 50%;
   overflow: hidden;
 }
+
 .about__img img {
   width: 100px;
 }
+
 .about__subtitle {
   font-size: var(--h2-font-size);
   color: var(--first-color);
   margin-bottom: var(--mb-1);
 }
+
 .about__text {
   margin-bottom: var(--mb-4);
 }
+
 .about__profession {
   display: block;
   margin-bottom: var(--mb-4);
 }
+
 .about__social-icon {
   font-size: 1.4rem;
   margin: 0 var(--mb-1);
 }
+
 .about__social-icon:hover {
   color: var(--first-color);
 }
 
-/* ===== SKILLS =====*/
+/* ===== SKILLS ===== */
 .skills__container {
   row-gap: 2rem;
 }
+
 .skills__subtitle {
   color: var(--first-color);
   margin-bottom: var(--mb-3);
 }
+
 .skills__name {
   display: inline-block;
   font-size: var(--small-font-size);
@@ -293,29 +330,35 @@ img {
   background-color: var(--white-color);
   border-radius: 0.25rem;
 }
+
 .skills__name:hover {
   background-color: var(--first-color);
   color: var(--white-color);
 }
+
 .skills__img img {
   border-radius: 0.5rem;
 }
 
-/* ===== PORTFOLIO =====*/
+/* ===== PORTFOLIO ===== */
 .portfolio {
   background-color: var(--white-color);
 }
+
 .portfolio__container {
   justify-items: center;
   row-gap: 2rem;
 }
+
 .portfolio__img {
   position: relative;
   overflow: hidden;
 }
+
 .portfolio__img img {
   border-radius: 0.5rem;
 }
+
 .portfolio__link {
   position: absolute;
   bottom: -100%;
@@ -328,11 +371,13 @@ img {
   border-radius: 0.5rem;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  transition: 0.3s;
+  transition: bottom 0.3s ease;
 }
+
 .portfolio__img:hover .portfolio__link {
   bottom: 0;
 }
+
 .portfolio__link-name {
   color: var(--dark-color);
 }
